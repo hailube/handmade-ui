@@ -62,6 +62,20 @@ The same empty-directory grid task was then re-run with these skills installed. 
 
 It also volunteered a header block — *"Values are chosen, not rounded for tidiness"* — justifying its column width against how long real club names are, and wrote `--club-ink-muted: #5a606c; /* 4.7:1 on --club-surface */`, checking contrast against the surface the colour actually sits on rather than against white.
 
+### The strongest result
+
+Prompted by the *verify by looking* section, it built a 600-club adversarial harness, ran it in Chromium, and screenshotted every state at 1100 / 390 / 320px in light and dark. That found **seven defects a code review would not have caught**:
+
+1. The `IntersectionObserver` was rooted on a scroller element that gets replaced when `status` changes — image reveal silently stopped after a loading→ready transition.
+2. A square logo plate made each card 320px tall: one club per phone screen.
+3. White-on-white logos read as a hole in the card.
+4. A `var()` inside a custom property is substituted on the element that *declares* it, so every card resolved the fallback hue instead of its own.
+5. A dark-mode override sat above the base rule at equal specificity, so dark mode kept a light plate.
+6. Moving the name into a `<button>` silently killed the line clamp — a button is an atomic inline, so the clamp counted it as one line.
+7. A container query never matched, because an element cannot query itself.
+
+None of those are visible in a diff. This is the evidence for the instruction that is otherwise easiest to skip.
+
 Two honest caveats. The radius count is the weakest result: a system emerged, but two raw values leaked. And `charm-budget` has the thinnest baseline of the three — a utilitarian grid has no personality to spend, so its trigger correctly did not fire in this test.
 
 ## Install

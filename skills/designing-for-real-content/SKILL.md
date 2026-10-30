@@ -67,14 +67,30 @@ Non-negotiable, and cheap if done while building rather than after: visible keyb
 
 ## Verify by looking
 
-This skill cannot be satisfied by reading code. Render it, then:
+**This skill cannot be satisfied by reading code.** The defects that matter here are invisible in a diff and obvious on a screen.
 
-1. Load with the network throttled and watch the first second. That is where perceived quality lives.
-2. Resize to 400px.
-3. Tab through it.
-4. Replace the data with the extremes above.
+Build a hostile harness once and reuse it. It takes minutes and pays for itself immediately:
 
-If your environment has a browser tool, take screenshots and look at them. "I have not rendered this" means the work is not finished.
+```js
+// Not a demo — an adversary. Every row is a failure you have actually shipped.
+const clubs = [
+  ...Array.from({ length: 600 }, (_, i) => ({ id: `c${i}`, name: `Club ${i}`, category: 'General' })),
+  { id: 'long',   name: 'Northeastern University Competitive Programming and Algorithmic Problem Solving Society' },
+  { id: 'twinA',  name: 'Northeastern University Undergraduate Student Chemistry Society' },
+  { id: 'twinB',  name: 'Northeastern University Undergraduate Student Chemistry Association' },
+  { id: 'blank',  name: '' },
+  { id: 'nocat',  name: 'No Category Club', logoUrl: '/wide-wordmark.png' },
+  { id: 'tall',   name: 'Tall Banner Club',  logoUrl: '/tall-banner.png' },
+  { id: 'white',  name: 'White On White',    logoUrl: '/white-logo.png' },
+  { id: 'broken', name: 'Dead URL Club',     logoUrl: '/does-not-exist.png' },
+];
+```
+
+Then render each state at 1100 / 390 / 320px, in light and dark, with the network throttled, and tab through. Screenshot them and *look*.
+
+Measured: an agent that did exactly this found **seven defects that reading the code did not catch** — an observer rooted on an element that got replaced on a state change, so image reveal silently stopped after loading→ready; a square logo plate making each card 320px tall, one club per phone screen; a white-on-white logo reading as a hole in the card; a `var()` inside a custom property resolving on the declaring element, so every card got the fallback hue; a dark-mode override sitting above the base rule at equal specificity, so dark mode kept a light plate; a line clamp silently killed by moving the text into a `<button>`, which is an atomic inline; and a container query that never matched because an element cannot query itself.
+
+Not one of those is visible in a code review. **"I have not rendered this" means the work is not finished.**
 
 ## Common mistakes
 
