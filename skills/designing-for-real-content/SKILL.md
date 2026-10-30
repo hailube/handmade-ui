@@ -41,7 +41,11 @@ Build the component, then feed it these before you call it done:
 
 Three failures worth knowing because they are invisible on a mock:
 
-**`loading="lazy"` is measured against the viewport, not your scroller.** If the list scrolls inside a container rather than the page, the look-ahead margin does not carry through, so images are requested only once already visible — reading as blank cards that paint in strips. Inside a nested scroller you need an `IntersectionObserver` rooted on that container. Sideways rows need the same along the x-axis.
+**`loading="lazy"` gets no look-ahead inside a nested scroller.** Browsers give lazy images a generous margin relative to the document viewport, but for an image inside a scrollable *element* the spec does not define the timing, and implementations have loaded them only once barely visible — no buffer. The symptom is blank cards that paint in strips from the top down as you scroll, worst on a slow connection.
+
+Two fixes:
+- An explicit `IntersectionObserver` with `root` set to the scroll container and a `rootMargin` of a screen or so. Works everywhere. Sideways rows (a shelf of posters) need the margin on the x-axis instead — an item clipped off the side of its row is "not visible" to an observer rooted anywhere else.
+- `IntersectionObserver`'s newer `scrollMargin`, which applies a margin at nested scroll containers rather than only at the root. Check current browser support before relying on it.
 
 **One observer per container, not per element.** 600 cards means 600 observers, which costs more than the images.
 
