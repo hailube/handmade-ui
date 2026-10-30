@@ -44,6 +44,26 @@ The difference was not capability. It was whether the reasoning had been written
 
 Motion, by contrast, came out *well* in the empty directory, because good motion skills already exist and were loaded. That is the evidence these skills sit in the right place.
 
+## Verified against the baseline
+
+The same empty-directory grid task was then re-run with these skills installed. Measured, not asserted:
+
+| | Without | With |
+|---|---|---|
+| Comment density (CSS / JSX) | 0.6% / 0% | **6.9% / 15.8%** |
+| Nested-scroller images | `loading="lazy"` | `IntersectionObserver` + look-ahead margin |
+| All-caps tracked labels | present | none |
+| Hover gated to fine pointers | no | yes |
+| Loading / empty / error states | empty only | all three |
+| 600-item scale | unhandled | handled |
+| Long-string overflow guard | absent | `min-width: 0` |
+| Image space reserved | no | `aspect-ratio` |
+| Border-radius | 4 unrelated values | 1 token + 1 `calc()` from it + 2 raw |
+
+It also volunteered a header block — *"Values are chosen, not rounded for tidiness"* — justifying its column width against how long real club names are, and wrote `--club-ink-muted: #5a606c; /* 4.7:1 on --club-surface */`, checking contrast against the surface the colour actually sits on rather than against white.
+
+Two honest caveats. The radius count is the weakest result: a system emerged, but two raw values leaked. And `charm-budget` has the thinnest baseline of the three — a utilitarian grid has no personality to spend, so its trigger correctly did not fire in this test.
+
 ## Install
 
 ### As a plugin (recommended for teams)
