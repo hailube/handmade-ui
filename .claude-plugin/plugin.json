@@ -1,0 +1,8 @@
+{
+  "name": "handmade-ui",
+  "description": "UI craft skills for the layer between picking a look and surviving real content: justifying every design value, designing for real data and its failure states, and spending decoration deliberately.",
+  "version": "1.0.0",
+  "author": { "name": "Benjamin Hailu" },
+  "homepage": "https://github.com/BackyardNEU/handmade-ui",
+  "keywords": ["ui", "ux", "design", "frontend", "css", "design-tokens", "accessibility", "design-review"]
+}

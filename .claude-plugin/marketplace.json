@@ -1,0 +1,11 @@
+{
+  "name": "handmade-ui",
+  "owner": { "name": "Benjamin Hailu" },
+  "plugins": [
+    {
+      "name": "handmade-ui",
+      "source": "./",
+      "description": "UI craft skills: justify every design value, design for real content and its failure states, spend decoration deliberately."
+    }
+  ]
+}
