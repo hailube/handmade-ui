@@ -1,6 +1,10 @@
 {
   "name": "handmade-ui",
-  "owner": { "name": "Benjamin Hailu", "url": "https://github.com/hailube" },
+  "description": "UI craft skills for Claude Code: justify every design value, design for real content and its failure states, and spend decoration deliberately.",
+  "owner": {
+    "name": "Benjamin Hailu",
+    "url": "https://github.com/hailube"
+  },
   "plugins": [
     {
       "name": "handmade-ui",
