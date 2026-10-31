@@ -1,6 +1,6 @@
 {
   "name": "handmade-ui",
-  "owner": { "name": "Benjamin Hailu" },
+  "owner": { "name": "Benjamin Hailu", "url": "https://github.com/hailube" },
   "plugins": [
     {
       "name": "handmade-ui",

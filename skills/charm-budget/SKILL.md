@@ -16,14 +16,14 @@ Core principle: **write down where charm is spent *and where it is refused*, bef
 A short paragraph at the top of the stylesheet or kit. Two halves — the spend list and the denial list. The denial list is the half that does the work.
 
 ```css
-/* The kit every feed prototype is built from, so they differ in layout and in how you
-   find a club, never in decoration.
+/* The kit every prototype is built from, so they differ in layout and in how you
+   find a trail, never in decoration.
 
-   Clean, with the landing page's charm: a sky header ending in a short picket fence,
-   paper posters pinned to a light wood yard, club names in condensed caps, hand-drawn
-   stickers as category icons, and the landing page's press-down buttons.
-   Charm is spent in those places and nowhere else: no tilted-at-rest posters, ropes,
-   strings or textures beyond the yard itself. */
+   Topographic, with the map's charm: a contour-line header fading into the page,
+   elevation profiles drawn as hand-inked strokes, trail names in condensed caps,
+   and the map's press-down buttons.
+   Charm is spent in those places and nowhere else: no tilted-at-rest cards, paper
+   grain, compass roses or textures beyond the contour header itself. */
 ```
 
 Why the denial list matters: without it, the next contributor adds a tilt to a card because tilting is *on-brand*, and they are right — it is. The denial list is the only thing that distinguishes "we didn't think of it" from "we decided against it." It converts taste into a reviewable rule.
@@ -31,7 +31,7 @@ Why the denial list matters: without it, the next contributor adds a tilt to a c
 ## Writing one
 
 1. **Name the one memorable thing.** If everything is memorable, nothing is. One element may be bold; everything else supports it.
-2. **List where charm is spent** — three to six specific places, each naming the device and its location. "Hand-drawn stickers as category icons" is a budget line. "Playful and warm" is not.
+2. **List where charm is spent** — three to six specific places, each naming the device and its location. "Elevation profiles as hand-inked strokes" is a budget line. "Playful and warm" is not.
 3. **List what is refused**, especially the on-brand things you are *not* doing. These are the ones that will otherwise creep back.
 4. **Say what the plain parts are.** "Charm is spent in those places and nowhere else" is the enforcing clause.
 
@@ -59,7 +59,7 @@ When the direction isn't settled, build a few and compare rather than arguing in
 - **Hold the copy constant.** Then the comparison is of design, not of writing. Write it once, use it in all of them.
 - **Real content and the real count.** A direction that works at 6 items and dies at 600 should die now.
 - **Same quality floor in each.** Keyboard reach, focus, reduced motion, 400px. A direction that can't meet the floor isn't a direction.
-- **Name them by direction** — Clothesline, Pinboard, Sticker — not Option A. The name is the thesis.
+- **Name them by direction** — Contour, Ledger, Postcard — not Option A. The name is the thesis.
 - **Each behind its own route or URL parameter**, so every one is a shareable link and nothing is wired into production yet.
 
 Then pick, promote the winner through one indirection so the move is a one-line change, and **delete the others**:
@@ -67,7 +67,7 @@ Then pick, promote the winner through one indirection so the move is a one-line 
 ```js
 /* Where the landing page lives. Only the /landing previews today; point LANDING_PATH
    at '/' and add '/' to isLandingPath when the chosen design moves to the root. */
-export const LANDING_PATH = '/landing/clothesline';
+export const LANDING_PATH = '/landing/contour';
 ```
 
 **Leave a signpost.** Unreferenced preview routes are invisible — no nav links to them, so nobody finds them and everybody assumes the work didn't land. Put the URLs in the PR body and the README. This is the single most common way good design work goes unseen.

@@ -24,7 +24,7 @@ These skills deliberately **do not** cover ground that is already well covered. 
 
 ## Why written reasons
 
-The design came out of one measurement. The same model was given the same task — "a scrollable grid of club cards with logo, name and category" — in two contexts.
+The design came out of one measurement. The same model was given the same task — "a scrollable grid of cards with logo, name and category" — in two contexts.
 
 **In a codebase whose design decisions were written down in comments**, it reproduced that codebase's hard-won solutions, including an `IntersectionObserver` lazy-loading fix for nested scrollers that it could not have derived from the task, and it explained *why* a fixed tween beat a spring for a panel whose data fetch starts when the animation ends.
 
@@ -33,7 +33,7 @@ The design came out of one measurement. The same model was given the same task �
 | | Empty directory | Codebase with written reasons |
 |---|---|---|
 | Comment density | **0.6%** | **27%** |
-| Nested-scroller images | `loading="lazy"` — silently defeated | `IntersectionObserver` rooted on the scroller |
+| Nested-scroller images | `loading="lazy"` — no look-ahead margin | `IntersectionObserver` rooted on the scroller |
 | Labels | `text-transform: uppercase` + tracking | — |
 | Hover | lift + shadow on every card, not gated to fine pointers | gated to `(hover: hover) and (pointer: fine)` |
 | Border radii | four unrelated values | one system |
@@ -60,14 +60,14 @@ The same empty-directory grid task was then re-run with these skills installed. 
 | Image space reserved | no | `aspect-ratio` |
 | Border-radius | 4 unrelated values | 1 token + 1 `calc()` from it + 2 raw |
 
-It also volunteered a header block — *"Values are chosen, not rounded for tidiness"* — justifying its column width against how long real club names are, and wrote `--club-ink-muted: #5a606c; /* 4.7:1 on --club-surface */`, checking contrast against the surface the colour actually sits on rather than against white.
+It also volunteered a header block — *"Values are chosen, not rounded for tidiness"* — justifying its column width against how long the real names are, and annotated its muted ink token with the contrast ratio it had measured against the card surface the colour actually sits on, rather than against white.
 
 ### The strongest result
 
-Prompted by the *verify by looking* section, it built a 600-club adversarial harness, ran it in Chromium, and screenshotted every state at 1100 / 390 / 320px in light and dark. That found **seven defects a code review would not have caught**:
+Prompted by the *verify by looking* section, it built a 600-row adversarial harness, ran it in Chromium, and screenshotted every state at 1100 / 390 / 320px in light and dark. That found **seven defects a code review would not have caught**:
 
 1. The `IntersectionObserver` was rooted on a scroller element that gets replaced when `status` changes — image reveal silently stopped after a loading→ready transition.
-2. A square logo plate made each card 320px tall: one club per phone screen.
+2. A square logo plate made each card 320px tall: one record per phone screen.
 3. White-on-white logos read as a hole in the card.
 4. A `var()` inside a custom property is substituted on the element that *declares* it, so every card resolved the fallback hue instead of its own.
 5. A dark-mode override sat above the base rule at equal specificity, so dark mode kept a light plate.
@@ -83,14 +83,14 @@ Two honest caveats. The radius count is the weakest result: a system emerged, bu
 ### As a plugin (recommended for teams)
 
 ```bash
-claude plugin marketplace add <your-org>/handmade-ui
+claude plugin marketplace add hailube/handmade-ui
 claude plugin install handmade-ui
 ```
 
 ### As personal global skills
 
 ```bash
-git clone https://github.com/<your-org>/handmade-ui.git
+git clone https://github.com/hailube/handmade-ui.git
 cp -R handmade-ui/skills/* ~/.claude/skills/
 ```
 
@@ -108,7 +108,7 @@ They trigger on their own from the descriptions, or invoke by name:
 
 ```
 /design-provenance            review this stylesheet
-/designing-for-real-content   this grid needs to handle 600 clubs
+/designing-for-real-content   this grid needs to handle 600 rows
 /charm-budget                 the landing page feels busy
 /handmade-ui                  which design skill does this need?
 ```

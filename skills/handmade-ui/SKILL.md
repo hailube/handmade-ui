@@ -7,7 +7,7 @@ license: MIT
 
 # Handmade UI
 
-Generated UI reads as generated because **nothing in it was caused by anything**. A human designer's work is full of values that could only have come from this product: a colour darkened because it sits on wood, a duration that ends when a data fetch begins, a label that exists because users kept asking one question.
+Generated UI reads as generated because **nothing in it was caused by anything**. A human designer's work is full of values that could only have come from this product: a colour darkened because it sits on a photographic scrim, a duration that ends when a data fetch begins, a label that exists because users kept asking one question.
 
 Core principle: **a design choice that cannot name its cause is a default wearing a costume.**
 
